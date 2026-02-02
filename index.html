@@ -1,0 +1,212 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BET A.I</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    background: linear-gradient(#0a7d2a, #034d1a);
+    color: white;
+}
+
+.top-scroll {
+    background: black;
+    padding: 10px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.top-scroll span {
+    display: inline-block;
+    padding-left: 100%;
+    animation: scroll 15s linear infinite;
+}
+
+@keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-100%); }
+}
+
+.container {
+    padding: 20px;
+}
+
+h1 {
+    margin-top: 10px;
+}
+
+.match-box {
+    background: rgba(0,0,0,0.3);
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 400px;
+    margin: auto;
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+}
+
+input {
+    padding: 10px;
+    width: 80%;
+    text-align: center;
+    border-radius: 5px;
+    border: none;
+    background: #e0e0e0;
+}
+
+button {
+    margin-top: 20px;
+    padding: 12px;
+    width: 80%;
+    border-radius: 5px;
+    border: none;
+    background: #ffcc00;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #ffd633;
+}
+
+button:disabled {
+    background: gray;
+    cursor: not-allowed;
+}
+
+.loader {
+    display: none;
+    margin-top: 15px;
+}
+
+.result-box {
+    margin-top: 20px;
+    font-size: 15px;
+}
+
+.warning {
+    color: red;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+a {
+    color: yellow;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.footer-link {
+    margin-top: 20px;
+    display: block;
+}
+</style>
+</head>
+
+<body>
+
+<div class="top-scroll">
+    <span>
+        <b>
+            <a href="https://odds23.com">
+                OUR BET ODDS HAS NEVER FAILED SINCE 2022
+            </a>
+        </b>
+    </span>
+</div>
+
+<div class="container">
+    <h1>Coming Up Teams Playing</h1>
+
+    <div class="match-box">
+        <label>Team 1</label>
+        <input type="text" id="team1" readonly>
+
+        <label>Team 2</label>
+        <input type="text" id="team2" readonly>
+
+        <button id="betBtn" onclick="suggestOutcome()">GET BET ODDS</button>
+
+        <div class="loader" id="loader">⏳ Analyzing match data...</div>
+
+        <div class="result-box" id="result"></div>
+    </div>
+
+    <a class="footer-link" href="https://odds23.com/load.html">LOGIN</a>
+</div>
+
+<script>
+const teams = [
+    ["SUNDERLAND", "BURNLEY"]
+  
+];
+
+// Load random teams on page load
+window.onload = loadTeams;
+
+function loadTeams() {
+    const randomMatch = teams[Math.floor(Math.random() * teams.length)];
+    document.getElementById("team1").value = randomMatch[0];
+    document.getElementById("team2").value = randomMatch[1];
+}
+
+function suggestOutcome() {
+    const btn = document.getElementById("betBtn");
+    const loader = document.getElementById("loader");
+    const resultBox = document.getElementById("result");
+
+    btn.disabled = true;
+    resultBox.innerHTML = "";
+    loader.style.display = "block";
+
+    setTimeout(() => {
+        loader.style.display = "none";
+
+        const team1 = document.getElementById("team1").value;
+        const team2 = document.getElementById("team2").value;
+
+        const shots1 = Math.floor(Math.random() * 13) + 1;
+        const shots2 = Math.floor(Math.random() * 13) + 1;
+        const onTarget1 = Math.floor(Math.random() * 6);
+        const onTarget2 = Math.floor(Math.random() * 6);
+
+        resultBox.innerHTML = `
+            <b>REGISTER TO JOIN USA BET ODDS</b><br><br>
+
+	     <a href="https://odds23.com/choose.html">
+                CLICK HERE TO REGISTER
+            </a><br> 
+		<p>
+
+            Shots Attempt:<br>
+            ${team1} ${shots1} - ${shots2} ${team2}<br><br>
+
+
+            <div class="warning">
+                NOTICE: THIS IS A USA BET ODDS COMPANY THAT GIVES BET ODDS-- 8 MATCHES EVERY DAY USING OUR EXPERTS AND BET AI<br>our predictions have never failed before since 2022
+            </div><br>
+
+          
+            
+        `;
+    }, 2500);
+}
+
+function resetMatch() {
+    document.getElementById("betBtn").disabled = false;
+    document.getElementById("result").innerHTML = "";
+    loadTeams();
+}
+</script>
+
+</body>
+</html>
